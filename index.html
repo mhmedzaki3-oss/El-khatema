@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B6E4F">
+<title>الخاتمة — ديمو</title>
+<style>
+:root{--emerald:#0B6E4F;--gold:#D4AF37;--turquoise:#1FB6A6;--cream:#FDFBF3;--dark:#1A2B22;--warn:#8B4513}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Tahoma","Arial",sans-serif}
+body{background:linear-gradient(135deg,#0B6E4F 0%,#1FB6A6 50%,#D4AF37 100%);min-height:100vh;color:var(--dark);padding-bottom:90px;background-attachment:fixed}
+header{text-align:center;padding:28px 20px 16px;color:var(--cream);background:linear-gradient(180deg,rgba(11,110,79,0.95),rgba(11,110,79,0.6))}
+header h1{font-size:2.4rem;font-weight:900;letter-spacing:2px;background:linear-gradient(90deg,#D4AF37,#FDFBF3,#D4AF37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3))}
+header .tagline{font-size:0.95rem;margin-top:8px;opacity:0.95;line-height:1.7;max-width:520px;margin:0 auto}
+.bismillah{font-size:1.1rem;color:var(--gold);margin-bottom:10px;font-weight:700}
+.demo-badge{display:inline-block;background:var(--warn);color:white;padding:4px 12px;border-radius:12px;font-size:0.75rem;margin-top:10px}
+#offlineBanner{display:none;background:var(--warn);color:white;text-align:center;padding:8px;font-size:0.85rem;font-weight:700}
+#offlineBanner.show{display:block}
+main{padding:20px;max-width:900px;margin:0 auto}
+.gate{background:rgba(253,251,243,0.96);border-radius:20px;padding:22px;margin-bottom:14px;cursor:pointer;transition:all 0.3s;border:2px solid var(--gold);box-shadow:0 8px 24px rgba(0,0,0,0.15);display:flex;align-items:center;gap:18px}
+.gate:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(212,175,55,0.4)}
+.gate .icon{font-size:2.6rem;width:68px;height:68px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--emerald),var(--turquoise));color:var(--cream);flex-shrink:0}
+.gate h2{color:var(--emerald);font-size:1.2rem;font-weight:700}
+.gate p{color:#555;font-size:0.88rem;margin-top:4px}
+.section-view{display:none;background:var(--cream);border-radius:20px;padding:20px;margin-top:10px;border:3px solid var(--gold)}
+.section-view.active{display:block;animation:fadeIn 0.4s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1}}
+.back-btn{background:var(--gold);color:var(--dark);border:none;padding:10px 20px;border-radius:20px;cursor:pointer;font-weight:700;margin-bottom:14px;font-size:0.9rem}
+.back-btn:hover{background:var(--turquoise);color:white}
+.verse-card{background:linear-gradient(135deg,#F5F0E1,#FDFBF3);padding:16px;margin:12px 0;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);border-right:5px solid var(--emerald)}
+.verse-card.hadith{border-right-color:var(--turquoise)}
+.badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:0.72rem;font-weight:700;margin-bottom:10px}
+.badge-quran{background:var(--emerald);color:white}
+.badge-hadith{background:var(--turquoise);color:white}
+.verse-card .text{font-size:1.12rem;line-height:2;color:var(--dark);font-weight:600}
+.verse-card .ref{color:var(--emerald);font-size:0.85rem;margin-top:10px;font-weight:700}
+.verse-card.hadith .ref{color:var(--turquoise)}
+.actions{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.audio-btn,.source-btn{background:var(--emerald);color:white;border:none;padding:8px 14px;border-radius:20px;cursor:pointer;font-size:0.82rem;font-weight:700;display:inline-flex;align-items:center;gap:6px;text-decoration:none;transition:all 0.2s;font-family:"Tahoma","Arial",sans-serif}
+.audio-btn:hover,.source-btn:hover{background:var(--turquoise)}
+.source-btn{background:var(--gold);color:var(--dark)}
+.source-btn:hover{background:#c19e2f;color:white}
+.art-note{background:rgba(31,182,166,0.1);border:1px dashed var(--turquoise);padding:12px;border-radius:10px;font-size:0.82rem;color:#444;margin:12px 0;line-height:1.7}
+.art-note strong{color:var(--emerald)}
+footer{position:fixed;bottom:0;width:100%;background:var(--emerald);color:var(--cream);text-align:center;padding:12px;border-top:3px solid var(--gold);font-size:0.8rem}
+footer .dua{color:var(--gold);font-weight:700;margin-bottom:4px}
+#audioNotice{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:var(--warn);color:white;padding:10px 20px;border-radius:20px;font-size:0.85rem;display:none;z-index:999;box-shadow:0 4px 12px rgba(0,0,0,0.3);max-width:90%;text-align:center}
+#audioNotice.show{display:block;animation:fadeIn 0.3s}
+</style>
+</head>
+<body>
+<div id="offlineBanner">📴 أنت غير متصل — النصوص متاحة، التلاوة تحتاج إنترنت</div>
+<header>
+<div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+<h1>الخاتمة</h1>
+<p class="tagline">رحلة تذكير بالدار الآخرة بين الخوف والرجاء، وبين العلم والعمل</p>
+<div class="demo-badge">نسخة تجريبية — DEMO</div>
+</header>
+<main>
+<div id="gates"></div>
+<div id="sectionView" class="section-view"></div>
+</main>
+<div id="audioNotice">🔊 التلاوة تحتاج اتصالاً بالإنترنت</div>
+<footer>
+<div class="dua">اللهم إني أسألك الجنة وأعوذ بك من النار</div>
+<div>الخاتمة — ديمو</div>
+</footer>
+
+<script>
+const DB = {
+  rahalah: {
+    title: "رحلة الآخرة", icon: "🕌",
+    artNote: "الرسوم الفنية رمزية، ولا تجسّد حقيقة الغيب.",
+    texts: [
+      { id: "quran_death_001", type: "quran", surah: 29, ayah: 57,
+        text: "كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ ۖ ثُمَّ إِلَيْنَا تُرْجَعُونَ",
+        ref: "العنكبوت: 57", url: "https://quran.com/ar/al-ankabut/57" },
+      { id: "quran_barzakh_001", type: "quran", surah: 23, ayah: 99, ayahEnd: 100,
+        text: "حَتَّىٰ إِذَا جَاءَ أَحَدَهُمُ الْمَوْتُ قَالَ رَبِّ ارْجِعُونِ ۝ لَعَلِّي أَعْمَلُ صَالِحًا فِيمَا تَرَكْتُ ۚ كَلَّا ۚ إِنَّهَا كَلِمَةٌ هُوَ قَائِلُهَا ۖ وَمِن وَرَائِهِم بَرْزَخٌ إِلَىٰ يَوْمِ يُبْعَثُونَ",
+        ref: "المؤمنون: 99-100", url: "https://quran.com/al-muminun/99-100" },
+      { id: "quran_barzakh_002", type: "quran", surah: 40, ayah: 46,
+        text: "النَّارُ يُعْرَضُونَ عَلَيْهَا غُدُوًّا وَعَشِيًّا ۖ وَيَوْمَ تَقُومُ السَّاعَةُ أَدْخِلُوا آلَ فِرْعَوْنَ أَشَدَّ الْعَذَابِ",
+        ref: "غافر: 46", url: "https://quran.com/ar/ghafir/46",
+        note: "تُعرض في سياق البرزخ، وتُقرأ مع فتوى الأزهر عن عذاب القبر." },
+      { id: "quran_resurrection_001", type: "quran", surah: 23, ayah: 16,
+        text: "ثُمَّ إِنَّكُمْ يَوْمَ الْقِيَامَةِ تُبْعَثُونَ",
+        ref: "المؤمنون: 16", url: "https://quran.com/23/16" },
+      { id: "quran_death_002", type: "quran", surah: 3, ayah: 185,
+        text: "كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ ۗ وَإِنَّمَا تُوَفَّوْنَ أُجُورَكُمْ يَوْمَ الْقِيَامَةِ",
+        ref: "آل عمران: 185", url: "https://quran.com/3/185" }
+    ]
+  },
+  jannah: {
+    title: "الجنة", icon: "🌿",
+    artNote: "أوصاف الجنة الواردة في القرآن والسنة حق نؤمن به كما ورد، أما المشاهد الفنية داخل التطبيق فهي تصورات رمزية لا تمثل حقيقة الغيب.",
+    texts: [
+      { id: "quran_paradise_001", type: "quran", surah: 55, ayah: 46,
+        text: "وَلِمَنْ خَافَ مَقَامَ رَبِّهِ جَنَّتَانِ",
+        ref: "الرحمن: 46", url: "https://quran.com/ar/ar-rahman/46" },
+      { id: "hadith_paradise_001", type: "hadith_qudsi",
+        text: "قَالَ اللَّهُ عَزَّ وَجَلَّ: أَعْدَدْتُ لِعِبَادِيَ الصَّالِحِينَ مَا لَا عَيْنٌ رَأَتْ وَلَا أُذُنٌ سَمِعَتْ وَلَا خَطَرَ عَلَى قَلْبِ بَشَرٍ",
+        ref: "صحيح مسلم: 2824a", grade: "صحيح", url: "https://sunnah.com/muslim:2824" },
+      { id: "quran_jannah_002", type: "quran", surah: 9, ayah: 72,
+        text: "وَعَدَ اللَّهُ الْمُؤْمِنِينَ وَالْمُؤْمِنَاتِ جَنَّاتٍ تَجْرِي مِن تَحْتِهَا الْأَنْهَارُ خَالِدِينَ فِيهَا وَمَسَاكِنَ طَيِّبَةً فِي جَنَّاتِ عَدْنٍ ۚ وَرِضْوَانٌ مِّنَ اللَّهِ أَكْبَرُ ۚ ذَٰلِكَ هُوَ الْفَوْزُ الْعَظِيمُ",
+        ref: "التوبة: 72", url: "https://quran.com/9/72" },
+      { id: "quran_jannah_003", type: "quran", surah: 47, ayah: 15,
+        text: "مَّثَلُ الْجَنَّةِ الَّتِي وُعِدَ الْمُتَّقُونَ ۖ فِيهَا أَنْهَارٌ مِّن مَّاءٍ غَيْرِ آسِنٍ وَأَنْهَارٌ مِّن لَّبَنٍ لَّمْ يَتَغَيَّرْ طَعْمُهُ وَأَنْهَارٌ مِّنْ خَمْرٍ لَّذَّةٍ لِّلشَّارِبِينَ وَأَنْهَارٌ مِّنْ عَسَلٍ مُّصَفًّى",
+        ref: "محمد: 15", url: "https://quran.com/47/15" },
+      { id: "hadith_rayyan_001", type: "hadith",
+        text: "إِنَّ فِي الْجَنَّةِ بَابًا يُقَالُ لَهُ الرَّيَّانُ، يَدْخُلُ مِنْهُ الصَّائِمُونَ يَوْمَ الْقِيَامَةِ، لَا يَدْخُلُ مِنْهُ أَحَدٌ غَيْرُهُمْ",
+        ref: "صحيح البخاري: 1896", grade: "صحيح", url: "https://sunnah.com/bukhari:1896",
+        note: "مقتطف من الرواية، وليس الحديث كاملًا." }
+    ]
+  },
+  naar: {
+    title: "النار", icon: "🔥",
+    artNote: "التحذير مقصوده العمل والاستعاذة، لا الترويع.",
+    texts: [
+      { id: "hadith_hell_001", type: "hadith",
+        text: "نَارُكُمْ جُزْءٌ مِنْ سَبْعِينَ جُزْءًا مِنْ نَارِ جَهَنَّمَ. قِيلَ: يَا رَسُولَ اللَّهِ، إِنْ كَانَتْ لَكَافِيَةً. قَالَ: فُضِّلَتْ عَلَيْهِنَّ بِتِسْعَةٍ وَسِتِّينَ جُزْءًا، كُلُّهُنَّ مِثْلُ حَرِّهَا",
+        ref: "صحيح البخاري: 3265", grade: "صحيح", url: "https://sunnah.com/bukhari:3265",
+        needsReview: true, note: "النص موسّع، يُراجع مع الأصل." },
+      { id: "quran_naar_002", type: "quran", surah: 2, ayah: 24,
+        text: "فَإِن لَّمْ تَفْعَلُوا وَلَن تَفْعَلُوا فَاتَّقُوا النَّارَ الَّتِي وَقُودُهَا النَّاسُ وَالْحِجَارَةُ ۖ أُعِدَّتْ لِلْكَافِرِينَ",
+        ref: "البقرة: 24", url: "https://quran.com/2/24" },
+      { id: "quran_naar_003", type: "quran", surah: 78, ayah: 21, ayahEnd: 26,
+        text: "إِنَّ جَهَنَّمَ كَانَتْ مِرْصَادًا ۝ لِّلطَّاغِينَ مَآبًا ۝ لَّابِثِينَ فِيهَا أَحْقَابًا ۝ لَّا يَذُوقُونَ فِيهَا بَرْدًا وَلَا شَرَابًا ۝ إِلَّا حَمِيمًا وَغَسَّاقًا ۝ جَزَاءً وِفَاقًا",
+        ref: "النبأ: 21–26", url: "https://quran.com/78/21-26" },
+      { id: "hadith_major_sins_001", type: "hadith",
+        text: "اجْتَنِبُوا السَّبْعَ الْمُوبِقَاتِ",
+        ref: "صحيح البخاري: 2766", grade: "صحيح", url: "https://sunnah.com/bukhari:2766",
+        note: "الحديث يذكر سبعًا من الكبائر المهلكة، ولا يحصر جميع أسباب دخول النار." }
+    ]
+  },
+  qiyamah: {
+    title: "يوم القيامة", icon: "⚖️",
+    artNote: "الحشر والميزان والصراط — رموز فنية فقط.",
+    texts: [
+      { id: "quran_qiyamah_001", type: "quran", surah: 99, ayah: 6, ayahEnd: 8,
+        text: "يَوْمَئِذٍ يَصْدُرُ النَّاسُ أَشْتَاتًا لِّيُرَوْا أَعْمَالَهُمْ ۝ فَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ خَيْرًا يَرَهُ ۝ وَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ شَرًّا يَرَهُ",
+        ref: "الزلزلة: 6–8", url: "https://quran.com/99/6-8" },
+      { id: "quran_qiyamah_002", type: "quran", surah: 18, ayah: 49,
+        text: "وَوُضِعَ الْكِتَابُ فَتَرَى الْمُجْرِمِينَ مُشْفِقِينَ مِمَّا فِيهِ",
+        ref: "الكهف: 49", url: "https://quran.com/18/49" },
+      { id: "quran_qiyamah_003", type: "quran", surah: 69, ayah: 18,
+        text: "يَوْمَئِذٍ تُعْرَضُونَ لَا تَخْفَىٰ مِنكُمْ خَافِيَةٌ",
+        ref: "الحاقة: 18", url: "https://quran.com/69/18" },
+      { id: "quran_sirat_001", type: "quran", surah: 19, ayah: 71,
+        text: "وَإِن مِّنكُمْ إِلَّا وَارِدُهَا ۚ كَانَ عَلَىٰ رَبِّكَ حَتْمًا مَّقْضِيًّا",
+        ref: "مريم: 71", url: "https://quran.com/19/71" },
+      { id: "hadith_sirat_001", type: "hadith",
+        text: "وَيُضْرَبُ الصِّرَاطُ بَيْنَ ظَهْرَيْ جَهَنَّمَ",
+        ref: "صحيح البخاري: 7437–7438", grade: "صحيح", url: "https://sunnah.com/bukhari:7437",
+        note: "مقتطف من حديث طويل في مشاهد القيامة والعبور على الصراط." }
+    ]
+  },
+  zad: {
+    title: "زاد الرحلة", icon: "🤲",
+    artNote: "العمل هو المقصود بالرحلة، لا الترفيه.",
+    texts: [
+      { id: "quran_tawbah_001", type: "quran", surah: 39, ayah: 53,
+        text: "قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا",
+        ref: "الزمر: 53", url: "https://quran.com/39/53" },
+      { id: "quran_good_deeds_001", type: "quran", surah: 3, ayah: 133,
+        text: "وَسَارِعُوا إِلَىٰ مَغْفِرَةٍ مِّن رَّبِّكُمْ وَجَنَّةٍ عَرْضُهَا السَّمَاوَاتُ وَالْأَرْضُ أُعِدَّتْ لِلْمُتَّقِينَ",
+        ref: "آل عمران: 133", url: "https://quran.com/3/133" },
+      { id: "quran_dhikr_001", type: "quran", surah: 33, ayah: 41,
+        text: "يَا أَيُّهَا الَّذِينَ آمَنُوا اذْكُرُوا اللَّهَ ذِكْرًا كَثِيرًا",
+        ref: "الأحزاب: 41", url: "https://quran.com/33/41" },
+      { id: "hadith_tawbah_001", type: "hadith",
+        text: "إِنَّ اللَّهَ عَزَّ وَجَلَّ يَبْسُطُ يَدَهُ بِاللَّيْلِ لِيَتُوبَ مُسِيءُ النَّهَارِ، وَيَبْسُطُ يَدَهُ بِالنَّهَارِ لِيَتُوبَ مُسِيءُ اللَّيْلِ",
+        ref: "صحيح مسلم: 2759", grade: "صحيح", url: "https://sunnah.com/muslim:2759" },
+      { id: "hadith_deeds_001", type: "hadith",
+        text: "أَدْوَمُهَا وَإِنْ قَلَّ",
+        ref: "صحيح البخاري: 6465", grade: "صحيح", url: "https://sunnah.com/bukhari:6465",
+        note: "مقتطف من جواب النبي ﷺ عن أحب الأعمال إلى الله." },
+      { id: "hadith_balance_001", type: "hadith",
+        text: "كَلِمَتَانِ خَفِيفَتَانِ عَلَى اللِّسَانِ، ثَقِيلَتَانِ فِي الْمِيزَانِ، حَبِيبَتَانِ إِلَى الرَّحْمَنِ: سُبْحَانَ اللَّهِ الْعَظِيمِ، سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",
+        ref: "صحيح البخاري: 6406", grade: "صحيح", url: "https://sunnah.com/bukhari:6406" }
+    ]
+  },
+  maktabah: {
+    title: "مكتبة الوحي", icon: "📖",
+    artNote: "المصادر: quran.com · sunnah.com · الأزهر الشريف.",
+    texts: [],
+    externalSources: [
+      { name: "القرآن الكريم — النص والتفسير", url: "https://quran.com" },
+      { name: "السنة النبوية — كتب الحديث", url: "https://sunnah.com" },
+      { name: "الأزهر الشريف — الموقع الرسمي", url: "https://www.azhar.eg" },
+      { name: "مركز الأزهر العالمي للفتوى الإلكترونية", url: "https://www.azhar.eg/fatwacenter" }
+    ]
+  }
+};
+
+const SURAH_AYAH_COUNT = [
+  7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,
+  112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,
+  54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,
+  14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,
+  29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,
+  11,8,3,9,5,4,7,3,6,3,5,4,5,6
+];
+
+function isValidAyahRange(surah, ayah, ayahEnd) {
+  if (!Number.isInteger(surah) || !Number.isInteger(ayah) || !Number.isInteger(ayahEnd)) return false;
+  if (surah < 1 || surah > 114) return false;
+  const max = SURAH_AYAH_COUNT[surah - 1];
+  return ayah >= 1 && ayahEnd >= ayah && ayahEnd <= max;
+}
+
+let currentAudio = null, audioQueue = [], audioNoticeTimer = null;
+
+function showAudioNotice(message = "تعذر تشغيل التلاوة. تحقق من اتصال الإنترنت.") {
+  const el = document.getElementById("audioNotice");
+  if (!el) return;
+  el.textContent = message;
+  el.classList.add("show");
+  clearTimeout(audioNoticeTimer);
+  audioNoticeTimer = setTimeout(() => el.classList.remove("show"), 3500);
+}
+
+function stopAudio() {
+  audioQueue = [];
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.removeAttribute("src");
+    currentAudio.load();
+    currentAudio = null;
+  }
+}
+
+function playVerse(surah, ayah, ayahEnd = ayah) {
+  if (!navigator.onLine) { showAudioNotice("التلاوة تحتاج اتصالًا بالإنترنت."); return; }
+  if (!isValidAyahRange(surah, ayah, ayahEnd)) { showAudioNotice("نطاق الآيات غير صحيح."); return; }
+  stopAudio();
+  for (let n = ayah; n <= ayahEnd; n++) audioQueue.push({ surah, ayah: n });
+  playNextVerse();
+}
+
+function playNextVerse() {
+  if (!audioQueue.length) { currentAudio = null; return; }
+  if (!navigator.onLine) { stopAudio(); showAudioNotice("انقطع الاتصال."); return; }
+  const item = audioQueue.shift();
+  const pad = n => String(n).padStart(3, "0");
+  const url = `https://everyayah.com/data/Alafasy_128kbps/${pad(item.surah)}${pad(item.ayah)}.mp3`;
+  const audio = new Audio();
+  currentAudio = audio;
+  audio.preload = "none";
+  audio.addEventListener("ended", () => {
+    if (currentAudio === audio) { currentAudio = null; playNextVerse(); }
+  });
+  audio.addEventListener("error", () => {
+    if (currentAudio === audio) { stopAudio(); showAudioNotice("تعذر تحميل التلاوة."); }
+  });
+  audio.src = url;
+  audio.play().catch(() => {
+    if (currentAudio === audio) { stopAudio(); showAudioNotice("تعذر بدء التلاوة."); }
+  });
+}
+
+window.addEventListener("offline", () => { if (currentAudio || audioQueue.length) stopAudio(); });
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  })[c]);
+}
+
+function renderText(t) {
+  const badgeText = t.type === "quran" ? "قرآن كريم" :
+    t.type === "hadith_qudsi" ? "حديث قدسي" :
+    `حديث · ${escapeHTML(t.grade || "")}`;
+  const badgeClass = t.type === "quran" ? "badge-quran" : "badge-hadith";
+
+  let actions = "";
+  if (t.type === "quran" && t.surah) {
+    actions += `<button class="audio-btn" onclick="playVerse(${Number(t.surah)},${Number(t.ayah)},${Number(t.ayahEnd || t.ayah)})">🔊 تلاوة</button>`;
+  }
+  if (t.url) {
+    actions += `<a class="source-btn" href="${escapeHTML(t.url)}" target="_blank" rel="noopener noreferrer">📚 المصدر</a>`;
+  }
+
+  return `
+    <div class="verse-card ${t.type === "quran" ? "quran" : "hadith"}">
+      <span class="badge ${badgeClass}">${badgeText}</span>
+      <div class="text">${escapeHTML(t.text)}</div>
+      <div class="ref">${escapeHTML(t.ref)}</div>
+      ${t.note ? `<div class="art-note" style="margin-top:8px;font-size:0.78rem">📝 ${escapeHTML(t.note)}</div>` : ""}
+      ${actions ? `<div class="actions">${actions}</div>` : ""}
+    </div>`;
+}
+
+function renderGates() {
+  document.getElementById("gates").innerHTML = Object.entries(DB).map(([key, data]) => `
+    <div class="gate" onclick="openGate('${key}')">
+      <div class="icon">${data.icon}</div>
+      <div>
+        <h2>${data.title}</h2>
+        <p>${data.texts.length ? data.texts.length + " نص شرعي" : "مصادر وروابط"}</p>
+      </div>
+    </div>`).join("");
+}
+
+function openGate(key) {
+  const data = DB[key];
+  const view = document.getElementById("sectionView");
+  document.getElementById("gates").style.display = "none";
+  view.classList.add("active");
+
+  let html = `<button class="back-btn" onclick="closeGate()">← رجوع</button>
+    <h2 style="color:var(--emerald);margin-bottom:12px">${data.icon} ${data.title}</h2>
+    <div class="art-note"><strong>ملاحظة:</strong> ${data.artNote}</div>`;
+
+  if (data.texts.length === 0) {
+    html += `<div style="padding:20px;text-align:center;color:#888">📚 روابط ومصادر خارجية ↓</div>`;
+  } else {
+    data.texts.forEach(t => html += renderText(t));
+  }
+
+  if (data.externalSources) {
+    html += `<div style="margin-top:20px;padding:16px;background:#F5F0E1;border-radius:12px">
+      <h3 style="color:var(--emerald);margin-bottom:10px">مصادر خارجية</h3>
+      ${data.externalSources.map(s => `<a href="${s.url}" target="_blank" rel="noopener noreferrer" style="display:block;color:var(--emerald);margin:6px 0;font-weight:700">↗ ${s.name}</a>`).join("")}
+    </div>`;
+  }
+
+  view.innerHTML = html;
+  window.scrollTo(0, 0);
+}
+
+function closeGate() {
+  document.getElementById("gates").style.display = "block";
+  document.getElementById("sectionView").classList.remove("active");
+}
+
+function updateOfflineBanner() {
+  const b = document.getElementById("offlineBanner");
+  if (!navigator.onLine) b.classList.add("show");
+  else b.classList.remove("show");
+}
+window.addEventListener("online", updateOfflineBanner);
+window.addEventListener("offline", updateOfflineBanner);
+
+renderGates();
+updateOfflineBanner();
+</script>
+</body>
+</html>
